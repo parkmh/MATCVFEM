@@ -22,6 +22,9 @@ opt = setK(opt,K);
 % compute volumes of the control volumes
 opt.cvfem.V = compute_volumes(opt.mesh.node,opt.mesh.elem,opt.darcy.thickness);          
 
+% last_tn is used in cvfem2d_t0_to_tn to keep the previous time step.
+opt.cvfem.last_tn = 0;
+
 [opt.bndry.inlet_flag, opt.bndry.inlet_pos, opt.bndry.Dirichlet] ...
     = inlet_location(opt.mesh.node, opt.mesh.bnd_nodes);
 [opt.bndry.vent_flag, opt.vent_elem] ...
