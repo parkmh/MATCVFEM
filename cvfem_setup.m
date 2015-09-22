@@ -16,18 +16,8 @@ opt.mesh.nelem = size(opt.mesh.elem,1);
 
 opt.mesh.normal_vec = compute_normals(opt.mesh.elem,opt.mesh.node);
 
-if size(K,2) == 1
-    opt.cvfem.K = [K K zeros(opt.mesh.nelem,1)];
-    opt.cvfem.ktype = 1;
-elseif size(K,2) == 2
-    opt.cvfem.K = [K zeros(opt.mesh.nelem,1)];
-    opt.cvfem.ktype = 2;
-elseif size(K,2) == 3
-    opt.cvfem.K = K;
-    opt.cvfem.ktype = 3;
-else
-    error('unsupported dimension of K!')
-end
+opt = setK(opt,K);
+
 
 % compute volumes of the control volumes
 opt.cvfem.V = compute_volumes(opt.mesh.node,opt.mesh.elem,opt.darcy.thickness);          
