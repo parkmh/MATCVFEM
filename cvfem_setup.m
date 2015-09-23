@@ -16,8 +16,9 @@ opt.mesh.nelem = size(opt.mesh.elem,1);
 
 opt.mesh.normal_vec = compute_normals(opt.mesh.elem,opt.mesh.node);
 
-opt = setK(opt,K);
-
+if nargin == 5 % set K can be called outside cvfem_setup.m
+    opt = setK(opt,K);
+end
 
 % compute volumes of the control volumes
 opt.cvfem.V = compute_volumes(opt.mesh.node,opt.mesh.elem,opt.darcy.thickness);          
