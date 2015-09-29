@@ -71,6 +71,17 @@ fFactor.appendChild( docNode.createTextNode(sprintf('\n')));
 scalar_pdata.appendChild(fFactor);
 
 %
+% VTKFile>UnstructuredGrid>Piece>PointData>DataArray(voidID)
+%
+vID = docNode.createElement('DataArray');
+vID.setAttribute('Format','ascii');
+vID.setAttribute('Name','VoidID');
+vID.setAttribute('type','Float64');
+vID.appendChild( docNode.createTextNode(sprintf('\n')));
+vID.appendChild(docNode.createTextNode(sprintf('%f ',opt.cvfem.voidID)));
+vID.appendChild( docNode.createTextNode(sprintf('\n')));
+scalar_pdata.appendChild(vID);
+%
 % VTKFile>UnstructuredGrid>Piece>PointData>DataArray(activeNode)
 %
 activeNode = docNode.createElement('DataArray');
