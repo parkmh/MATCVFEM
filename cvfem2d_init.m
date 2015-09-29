@@ -31,3 +31,7 @@ opt.cvfem.fFactor = zeros(opt.mesh.nnode,1);          % the filling factor
 
 % allocate a sparse matrix 
 opt.cvfem.A = spalloc(opt.mesh.nnode,opt.mesh.nnode,opt.mesh.nnode*10);
+
+opt.cvfem.nvoid = 0; % number of voids
+opt.cvfem.void_volume = zeros(opt.mesh.nnode,2);
+opt.cvfem.voidID = ones(opt.mesh.nnode,1);
