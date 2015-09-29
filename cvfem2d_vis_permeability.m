@@ -71,14 +71,6 @@ if opt.cvfem.ktype == 1
     scalar_cdata.appendChild(k);
 end
 
-%
-% VTKFile>UnstructuredGrid>Piece>CellData
-%
-tensor_cdata = docNode.createElement('CellData');
-tensor_cdata.setAttribute('Tensors','tensors');
-piece.appendChild(tensor_cdata);
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if opt.cvfem.ktype == 1
