@@ -29,7 +29,7 @@ for i = 1 : length(inlet_elem)
     elem_i = opt.mesh.elem(inlet_elem(i),:);
     node_i = opt.mesh.node(elem_i,:);
     vi = velocity_centre_tri(u(elem_i),node_i,K(inlet_elem(i),:),darcy);
-    Q(elem_i) = Q(elem_i) + local_flux_tri_inlet(node_i,vi,fFactor(elem_i),opt.bndry.inlet_flag(elem_i),opt.mesh.bnd_nodes(elem_i),darcy);
+    Q(elem_i) = Q(elem_i) + local_flux_tri_inlet(node_i,vi,fFactor(elem_i),opt.bndry.inlet_flag(elem_i),opt.mesh.bndry_nodes(elem_i),darcy);
 end
 
 for i = 1 : length(other_elem)

@@ -11,7 +11,7 @@ opt.mesh.nnode = size(opt.mesh.node,1);
 opt.mesh.nelem = size(opt.mesh.elem,1);
 
 
-[opt.mesh.Cnode, opt.mesh.Celem, opt.mesh.has_node_i, opt.mesh.bnd_nodes ] ...
+[opt.mesh.Cnode, opt.mesh.Celem, opt.mesh.has_node_i, opt.mesh.bndry_nodes, opt.mesh.nb_nodes ] ...
     =  fem2d_init_tri(opt.mesh.elem,opt.mesh.nnode);
 
 opt.mesh.normal_vec = compute_normals(opt.mesh.elem,opt.mesh.node);
@@ -27,10 +27,11 @@ opt.cvfem.V = compute_volumes(opt.mesh.node,opt.mesh.elem,opt.darcy.thickness);
 opt.cvfem.last_tn = 0;
 
 [opt.bndry.inlet_flag, opt.bndry.inlet_pos, opt.bndry.Dirichlet] ...
-    = inlet_location(opt.mesh.node, opt.mesh.bnd_nodes);
-[opt.bndry.vent_flag, opt.vent_elem] ...
-    = vent_location(opt.mesh.node,opt.mesh.bnd_nodes);
+    = inlet_location(opt.mesh.node, opt.mesh.bndry_nodes);
+[opt.bndry.vent_flag] ...
+    = vent_location(opt.mesh.node,opt.mesh.bndry_nodes);
+opt.bndry.vent_idx = find(opt.bndry.vent_flag);
 
 % Nuemann boundary condition
-opt.bndry.neumann_flag = find_nuemann_points(opt.mesh.bnd_nodes,opt.bndry.inlet_flag, opt.bndry.vent_flag);
+opt.bndry.neumann_flag = find_nuemann_points(opt.mesh.bndry_nodes,opt.bndry.inlet_flag, opt.bndry.vent_flag);
 
