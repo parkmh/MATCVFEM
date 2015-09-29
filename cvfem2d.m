@@ -4,12 +4,11 @@ function opt = cvfem2d(opt)
 %     element method.
 %     
 %     See also cvfem_setup
-% todo cvfem2d_vis_timestep, update-flow_rate_tri
+
 gD = str2func(opt.bndry.gd_filename);
 opt.cvfem.u = zeros(opt.mesh.nnode,1);
 opt.cvfem.u(opt.bndry.inlet_flag==1) = gD(opt.bndry.inlet_pos);
 opt.cvfem.u(opt.cvfem.u==0) = opt.bndry.pvent;
-opt.cvfem.voidID = ones(opt.mesh.nnode,1);
 
 
 % Initialise activeNode, activeElement vectors, fTime, fFactor,
