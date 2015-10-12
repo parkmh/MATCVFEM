@@ -1,10 +1,10 @@
-function [opt, pressures, flow_rates] = cvfem2d_obsrv(opt,obsrv_times)
+function [opt, pressures, flow_rates, filling_factors] = cvfem2d_obsrv(opt,obsrv_times)
 
 obsrv_times = sort(obsrv_times);
 tindex = 1;
 pressures = zeros(opt.mesh.nnode,length(obsrv_times));
 flow_rates = zeros(opt.mesh.nnode,length(obsrv_times));
-
+filling_factors = zeros(opt.mesh.nnode,length(obsrv_times));
 gD = str2func(opt.bndry.gd_filename);
 opt.cvfem.u = zeros(opt.mesh.nnode,1);
 opt.cvfem.u(opt.bndry.inlet_flag==1) = gD(opt.bndry.inlet_pos);
@@ -24,7 +24,8 @@ opt.cvfem.fTime = increase_fTime(opt.cvfem.fTime,dt);
 
 u_old = opt.cvfem.u;
 Q_old = Q;
-while ~isFilled(opt.cvfem.fFactor,opt.mesh.nnode)
+fFactor_old = opt.cvfem.fFactor;
+while ~isFilled(opt.cvfem.fFactor,opt.mesh.nnode,opt.bndry.vent_idx)
     [opt.cvfem, opt.bndry] = still_solver(opt.cvfem,opt.mesh,opt.bndry);
 
     Q   = update_flow_rate_tri(opt);
@@ -46,6 +47,9 @@ while ~isFilled(opt.cvfem.fFactor,opt.mesh.nnode)
             flow_rates(:,tindex)...
                 = (current_time-opt.cvfem.fTime+dt)/dt*Q +...
                 (opt.cvfem.fTime-current_time)/dt*Q_old;
+            filling_factors(:,tindex) ...
+                = (current_time-opt.cvfem.fTime+dt)/dt*opt.cvfem.fFactor +...
+                (opt.cvfem.fTime-current_time)/dt*fFactor_old;
             tindex = tindex + 1;
             if tindex > length(obsrv_times)
                 break;
@@ -60,6 +64,7 @@ while ~isFilled(opt.cvfem.fFactor,opt.mesh.nnode)
     
     u_old = opt.cvfem.u;
     Q_old = Q;
+    fFactor_old = opt.cvfem.fFactor;
     
     
 end
