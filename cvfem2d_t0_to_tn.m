@@ -33,7 +33,7 @@ if opt.vis.dumpFlag == 1 && opt.cvfem.last_tn < opt.cvfem.fTime
 end
 u_old = opt.cvfem.u;
 Q_old = Q;
-while ~isFilled(opt.cvfem.fFactor,opt.mesh.nnode)
+while ~isFilled(opt.cvfem.fFactor,opt.mesh.nnode,opt.bndry.vent_idx)
     [opt.cvfem, opt.bndry] = still_solver(opt.cvfem,opt.mesh,opt.bndry);
 
     Q   = update_flow_rate_tri(opt);
