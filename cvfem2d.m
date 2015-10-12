@@ -33,7 +33,7 @@ if opt.vis.dumpFlag == 1
     opt.vis.dumpIdx = opt.vis.dumpIdx + 1;
 end
 
-while ~isFilled(opt.cvfem.fFactor,opt.mesh.nnode)
+while ~isFilled(opt.cvfem.fFactor,opt.mesh.nnode,opt.bndry.vent_idx)
     [opt.cvfem, opt.bndry] = still_solver(opt.cvfem,opt.mesh,opt.bndry);
 
     Q   = update_flow_rate_tri(opt);
@@ -63,7 +63,7 @@ if opt.vis.dumpFlag == 1
     end
     
     cwd = pwd;
-    movefile('*.vtu',[cwd filesep opt.vis.filename])
+    system(['mv *.vtu ' cwd filesep opt.vis.filename]);
     cvfem2d_vis_global(fTimes(1:opt.vis.dumpIdx),opt.vis.filename)
     
 end
