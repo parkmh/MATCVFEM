@@ -34,9 +34,7 @@ if lastIdx > 0
         startIdx = startIdx + 1;
         if startIdx > lastIdx
             break;
-        end
-        
-        
+        end 
     end
     voidID(queue(1:lastIdx)) = 1;
 end
