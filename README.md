@@ -24,9 +24,12 @@ git clone https://github.com/parkmh/MATCVFEM.git
 
 * Create a 2D domain.
 ![Create a 2D domain](https://github.com/parkmh/MATCVFEM/blob/master/figures/domain.jpg)
-* Generate an initial mesh.
 
-* Refine a mesh
+* Generate an initial mesh.
+![Generate an initial mesh](https://github.com/parkmh/MATCVFEM/blob/master/figures/mesh.jpg)
+
+* Refine a mesh (opt)
+![Refine a mesh](https://github.com/parkmh/MATCVFEM/blob/master/figures/refine.jpg)
 
 ## MATCVFEM Project Initialization
 
