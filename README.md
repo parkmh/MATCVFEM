@@ -15,9 +15,13 @@ git clone https://github.com/parkmh/MATCVFEM.git
 
 ## Mesh Generation
 *pdetool* starts the PDE app, which helps you to draw the 2-D domain and refine mesh.
+
 1. Run *pdetool*.
-`>> pdetool`
-2.
+```
+>> pdetool
+```
+2. 
+
 ## MATCVFEM Project Initialization
 
 ## Visualization (Paraview)
