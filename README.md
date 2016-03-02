@@ -2,9 +2,13 @@
 MATCVFEM is a free set of MATLAB functions for the numericalsolution of moving boundary problem using the control volume finite element method. 
 ## Download and Installation
 In order to install and use the MATCVFEM, you must already have [MATFEM](https://github.com/parkmh/MATFEM) on your computer. 
+
 1. Download the MATCVFEM to your desktop
+
 `git clone https://github.com/parkmh/MATCVFEM.git`
+
 2. Open MATLAB and type the following in the command window:
+
 `>> cd (MATCVFEM folder)`
 `>> install`
 
