@@ -8,10 +8,10 @@ In order to install and use the MATCVFEM, you must already have [MATFEM](https:/
 git clone https://github.com/parkmh/MATCVFEM.git
 ```
 2. Open MATLAB and type the following in the command window:
-
-`>> cd (MATCVFEM folder)`
-
-`>> install`
+```
+>> cd (MATCVFEM folder)
+>> install
+```
 
 ## Mesh Generation
 *pdetool* starts the PDE app, which helps you to draw the 2-D domain and refine mesh.
