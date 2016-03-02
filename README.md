@@ -7,6 +7,7 @@ In order to install and use the MATCVFEM, you must already have [MATFEM](https:/
 ```
 git clone https://github.com/parkmh/MATCVFEM.git
 ```
+
 2. Open MATLAB and type the following in the command window:
 ```
 >> cd (MATCVFEM folder)
@@ -20,6 +21,7 @@ git clone https://github.com/parkmh/MATCVFEM.git
 ```
 >> pdetool
 ```
+
 2. 
 
 ## MATCVFEM Project Initialization
